@@ -1,15 +1,21 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import Logo from '../../images/Travellio_Logo.png';
 
 
 const Header = () => {
 
+    const reserveImg = "https://i.ibb.co/0jz6gHX/avatar.png";
+
+    const { user, logOut } = useAuth();
+
 
 
     return (
-        <div >
-            <nav className=''>
-                <div className="navbar fixed z-50  w-full text-gray-100 h-24">
+        <>
+            <nav className='fixed top-0 z-50 w-full'>
+                <div className="navbar bg-rose-500 text-gray-100 h-[70px]">
                     <div className="flex-1 xl:pl-48 mx-2">
 
                         <img className="pl-5 md:pl-10 h-12" src="" alt="" />
@@ -20,27 +26,31 @@ const Header = () => {
                     </div>
                     <div className="flex-none hidden xl:pr-48 mx-2 lg:flex pr-10">
                         <div className="flex items-center">
-                            <button className="btn hover:bg-zinc-700 btn-ghost rounded  mx-2">
+                            <NavLink to="/" className="btn hover:bg-zinc-700 btn-ghost rounded  mx-2">
 
                                 HOME
 
-                            </button>
+                            </NavLink>
                             <button className="btn hover:bg-zinc-700 btn-ghost rounded  mx-3">
 
                                 ABOUT US
 
                             </button>
-                            <button className="btn hover:bg-zinc-700 btn-ghost rounded  mx-3">
+                            <NavLink to="/post" className="btn hover:bg-zinc-700 btn-ghost rounded  mx-3">
 
-                                All BLOGS
+                                POST A BLOG
 
-                            </button>
+                            </NavLink>
 
-                            <button className="btn border-0 px-7 py-2 rounded bg-rose-500 text-white hover:bg-zinc-700 transition duration-500 mx-3">
-
-                                LOGIN
-
-                            </button>
+                            {
+                                user?.email ? <button className="btn border-0 px-7 py-2 rounded hover:text-white bg-white hover:bg-zinc-700 text-rose-500  transition duration-500 mx-3" onClick={logOut}>Log Out</button> :
+                                    <NavLink to="/login" className="btn border-0 px-7 py-2 rounded hover:text-white bg-white hover:bg-zinc-700 text-rose-500  transition duration-500 mx-3">
+                                        LOGIN
+                                    </NavLink>
+                            }
+                            <div>
+                                {user?.email && <img className="h-10 rounded-full" src={user?.photoURL || reserveImg} alt="" />}
+                            </div>
                         </div>
                     </div>
                     <div className='block lg:hidden'>
@@ -54,8 +64,11 @@ const Header = () => {
 
 
             </nav>
-        </div>
+        </>
     );
 };
 
 export default Header;
+
+
+

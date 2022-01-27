@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from "../../Header/Header"
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -29,7 +28,6 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 const Carousel = () => {
     return (
         <div className=''>
-            <Header></Header>
             <Swiper spaceBetween={30} centeredSlides={true} autoplay={{
                 "delay": 3000,
                 "disableOnInteraction": false
