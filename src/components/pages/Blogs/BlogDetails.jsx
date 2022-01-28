@@ -12,7 +12,7 @@ const BlogDetails = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://blooming-anchorage-02539.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => setBlogs(data))
 

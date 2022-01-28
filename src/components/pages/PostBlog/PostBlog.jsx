@@ -12,7 +12,7 @@ const PostBlog = () => {
 
     const onSubmit = data => {
         console.log(data);
-        axios.post('http://localhost:5000/blogs', data)
+        axios.post('https://blooming-anchorage-02539.herokuapp.com/blogs', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Added successfully');

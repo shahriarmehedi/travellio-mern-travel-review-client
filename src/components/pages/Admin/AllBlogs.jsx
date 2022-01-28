@@ -7,7 +7,7 @@ const AllBlogs = () => {
     const [allBlogs, setAllBlogs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://blooming-anchorage-02539.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => setAllBlogs(data))
 
@@ -16,7 +16,7 @@ const AllBlogs = () => {
     const handleDeleteBlog = id => {
         const proceed = window.confirm('Are you sure to delete this Blog?');
         if (proceed) {
-            const url = `http://localhost:5000/blogs/${id}`;
+            const url = `https://blooming-anchorage-02539.herokuapp.com/blogs/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -37,7 +37,7 @@ const AllBlogs = () => {
     const handleConfirmApprove = id => {
         const confirmedBlog = { status: "approved" };
 
-        const url = `http://localhost:5000/blogs/${id}`;
+        const url = `https://blooming-anchorage-02539.herokuapp.com/blogs/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

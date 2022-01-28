@@ -8,7 +8,7 @@ const DashboardHome = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://blooming-anchorage-02539.herokuapp.com/blogs')
             .then(res => res.json())
             .then(data => setProducts(data))
 
@@ -17,7 +17,7 @@ const DashboardHome = () => {
 
     const [totalUsers, setTotalUsers] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://blooming-anchorage-02539.herokuapp.com/users')
             .then(res => res.json())
             .then(data => setTotalUsers(data))
 
