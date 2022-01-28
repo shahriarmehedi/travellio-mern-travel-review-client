@@ -2,9 +2,7 @@
 
 ### Project category: Travel
 
-## Live link: https://coming.soon/
-
-[Will be available soon]
+## Live link: https://shahriar-travellio.web.app/
 
 ## Technology used:
 
@@ -23,23 +21,6 @@
 - react-tabs
 - react-router-dom
 - swiper
--
--
--
-
-## Main Features:
-
--
--
--
--
--
--
--
--
--
--
--
--
--
--
+- react rating
+- axios
+- firebase
