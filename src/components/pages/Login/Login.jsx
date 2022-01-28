@@ -18,11 +18,11 @@ const Login = () => {
 
     const location = useLocation();
     const redirect_uri = location.state?.from || '/';
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleSignInUsingGoogle = () => {
         signInUsingGoogle();
-        history.push(redirect_uri);
+        navigate(redirect_uri);
 
     }
 
@@ -37,7 +37,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('User Successfully Logged In !!!');
-                history.push(redirect_uri);
+                navigate.push(redirect_uri);
             }).catch(error => {
                 const errorMessage = error.message;
                 setError(() => {

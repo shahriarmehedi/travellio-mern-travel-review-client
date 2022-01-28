@@ -12,14 +12,14 @@ module.exports = {
     themes: [
       {
         'mytheme': {
-          'primary': '#570df8',
-          'primary-focus': '#4506cb',
+          'primary': '#3F3F46',
+          'primary-focus': '#3F3F46',
           'primary-content': '#ffffff',
-          'secondary': '#f000b8',
-          'secondary-focus': '#bd0091',
+          'secondary': '#3F3F46',
+          'secondary-focus': '#3F3F46',
           'secondary-content': '#ffffff',
-          'accent': '#37cdbe',
-          'accent-focus': '#2aa79b',
+          'accent': '#3F3F46',
+          'accent-focus': '#3F3F46',
           'accent-content': '#ffffff',
           'neutral': '#3d4451',
           'neutral-focus': '#2a2e37',

@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../../Header/Header';
 import { useForm } from "react-hook-form";
-import "./PostBlog.css"
 import axios from 'axios';
 import useAuth from '../../../hooks/useAuth';
+import "../PostBlog/PostBlog.css"
+import Header from '../../Header/Header';
 
-const PostBlog = () => {
+const PostAdminBlog = () => {
 
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
@@ -29,7 +29,7 @@ const PostBlog = () => {
         <>
             <Header />
             <h2 className='mt-28 font-bold text-2xl text-center'>Post Your Blog</h2>
-            <div className="text-gray-800 pb-16 bg-gray-800 pt-10 mt-10 rounded-box w-11/12 md:w-5/6 lg:w-2/5 mx-auto" >
+            <div className="text-gray-800 pb-16 bg-gray-800 pt-10 mt-10 rounded-box w-11/12 md:w-5/6 lg:w-4/5 mx-auto" >
                 <form className=" add-service-form w-5/6 mx-auto " onSubmit={handleSubmit(onSubmit)}>
                     <label className="label">
                         <span className="label-text text-white">Your name:</span>
@@ -90,8 +90,7 @@ const PostBlog = () => {
                         <span className="label-text text-white">Rate this tour (1-5):</span>
                     </label>
                     <input type="number" {...register("rating", { min: 1, max: 5 })} />
-
-                    <input hidden defaultValue="pending" {...register("status")} />
+                    <input hidden defaultValue="approved" {...register("status")} />
 
 
                     <br />
@@ -102,4 +101,4 @@ const PostBlog = () => {
     );
 };
 
-export default PostBlog;
+export default PostAdminBlog;

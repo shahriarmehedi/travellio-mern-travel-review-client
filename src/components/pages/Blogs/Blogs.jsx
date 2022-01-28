@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
@@ -11,7 +12,7 @@ const Blogs = () => {
     const [allBlogs, setAllBlogs] = useState([]);
 
     useEffect(() => {
-        fetch('/blogData.json')
+        fetch('http://localhost:5000/blogs')
             .then(res => res.json())
             .then(data => setAllBlogs(data))
 
@@ -41,19 +42,36 @@ const Blogs = () => {
         pageCount = 5
     }
 
-
+    if (allBlogs.length === 0) {
+        return (
+            <div>
+                <h2 className="text-xl my-7 text-center font-bold">Loading Blogs Please Wait...</h2>
+                <div className="flex justify-center items-center">
+                    <div
+                        className="
+            loader
+            ease-linear
+            rounded-full
+            border-8 border-t-8 border-gray-200
+            h-32
+            w-32"
+                    ></div>
+                </div>
+            </div>
+        )
+    }
 
 
     return (
         <>
-            <div className=' w-11/12 z-40  mx-auto min-h-screen'>
+            <div className=' w-11/12 z-40  mx-auto '>
                 <h1 className='pt-10 pb-8 text-4xl text-center font-bold'>Experience Blog Posts</h1>
                 <p className='text-center w-3/4 mx-auto text-gray-400 pb-20'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur inventore magni a natus numquam consequatur odit qui animi, suscipit autem, incidunt repellat distinctio modi dolore nostrum accusantium itaque eos. Dolorum nesciunt officiis, beatae eos quia ab eveniet</p>
                 <div className='flex flex-col-reverse lg:flex-row'>
                     <div className='lg:w-[30%] my-10 lg:ml-10 text-center lg:my-0 shadow-lg rounded-xl min-h-[500px] flex items-center flex-col'>
                         <h2 className='font-bold text-xl py-5'>Top rated spots</h2>
                         {
-                            allBlogs.filter(topRated => topRated.rating === 5).map(filtered => <div className='py-3' key={filtered._id}>
+                            allBlogs.filter(topRated => topRated.rating == 5 && topRated.status === "approved").map(filtered => <div className='py-3' key={filtered._id}>
 
                                 <NavLink to={`/blogs/${filtered?._id}`}  >
                                     <img className='w-1/2 mx-auto rounded-md mt-3' src={filtered?.image} alt="" />
@@ -68,7 +86,7 @@ const Blogs = () => {
                             </div>)
                         }
                         {
-                            allBlogs.filter(topRated => topRated.rating < 5 && topRated.rating >= 4).slice(0, 5).map(filtered => <div className='py-3' key={filtered._id}>
+                            allBlogs.filter(topRated => topRated.rating < 5 && topRated.rating >= 4 && topRated.status === "approved").slice(0, 5).map(filtered => <div className='py-3' key={filtered._id}>
 
                                 <NavLink to={`/blogs/${filtered?._id}`}  >
                                     <img className='w-1/2 mx-auto rounded-md mt-3' src={filtered?.image} alt="" />
@@ -87,7 +105,7 @@ const Blogs = () => {
                     <div className='lg:w-[70%] mx-auto lg:px-10'>
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 min-h-[80vh]'>
                             {
-                                page === 1 && allBlogs.slice(0, 10).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
+                                page === 1 && allBlogs.filter(onlyApproved => onlyApproved.status === "approved").slice(0, 10).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
                                     <img className='w-full object-cover mx-auto' src={blog.image} alt="" />
                                     <div className='pl-5'>
                                         <h2 className='py-2 text-xl xl:text-2xl font-bold'>{blog.title} </h2>
@@ -111,7 +129,7 @@ const Blogs = () => {
                                 </div>)
                             }
                             {
-                                page === 2 && allBlogs.slice(10, 20).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
+                                page === 2 && allBlogs.filter(onlyApproved => onlyApproved.status === "approved").slice(10, 20).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
                                     <img className='w-full object-cover mx-auto' src={blog.image} alt="" />
                                     <div className='pl-5'>
                                         <h2 className='py-2 text-xl xl:text-2xl font-bold'>{blog.title} </h2>
@@ -135,7 +153,7 @@ const Blogs = () => {
                                 </div>)
                             }
                             {
-                                page === 3 && allBlogs.slice(20, 30).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
+                                page === 3 && allBlogs.filter(onlyApproved => onlyApproved.status === "approved").slice(20, 30).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
                                     <img className='w-full object-cover mx-auto' src={blog.image} alt="" />
                                     <div className='pl-5'>
                                         <h2 className='py-2 text-xl xl:text-2xl font-bold'>{blog.title} </h2>
@@ -159,7 +177,7 @@ const Blogs = () => {
                                 </div>)
                             }
                             {
-                                page === 4 && allBlogs.slice(30, 40).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
+                                page === 4 && allBlogs.filter(onlyApproved => onlyApproved.status === "approved").slice(30, 40).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
                                     <img className='w-full object-cover mx-auto' src={blog.image} alt="" />
                                     <div className='pl-5'>
                                         <h2 className='py-2 text-xl xl:text-2xl font-bold'>{blog.title} </h2>
@@ -183,7 +201,7 @@ const Blogs = () => {
                                 </div>)
                             }
                             {
-                                page === 5 && allBlogs.slice(40, 50).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
+                                page === 5 && allBlogs.filter(onlyApproved => onlyApproved.status === "approved").slice(40, 50).map(blog => <div className=' shadow-lg rounded-2xl pb-3' key={blog._id}>
                                     <img className='w-full object-cover mx-auto' src={blog.image} alt="" />
                                     <div className='pl-5'>
                                         <h2 className='py-2 text-xl xl:text-2xl font-bold'>{blog.title} </h2>

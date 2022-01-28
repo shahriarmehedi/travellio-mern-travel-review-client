@@ -31,11 +31,11 @@ const Header = () => {
                                 HOME
 
                             </NavLink>
-                            <button className="btn hover:bg-zinc-700 btn-ghost rounded  mx-3">
+                            <NavLink to="/admin/dashboard" className="btn hover:bg-zinc-700 btn-ghost rounded  mx-3">
 
-                                ABOUT US
+                                ADMIN
 
-                            </button>
+                            </NavLink>
                             <NavLink to="/post" className="btn hover:bg-zinc-700 btn-ghost rounded  mx-3">
 
                                 POST A BLOG

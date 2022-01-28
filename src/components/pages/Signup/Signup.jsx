@@ -15,13 +15,13 @@ const Signup = () => {
 
     const location = useLocation();
     const redirect_uri = location.state?.from || '/';
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const { signInUsingGoogle } = useAuth();
 
     const handleSignInUsingGoogle = () => {
         signInUsingGoogle();
-        history.push(redirect_uri);
+        navigate(redirect_uri);
     }
 
     const handleSignup = e => {
@@ -49,7 +49,7 @@ const Signup = () => {
                 saveUser(email, name, 'POST');
 
                 toast.success('User Successfully Registered & Signed In')
-                history.push('/');
+                navigate('/');
                 window.location.reload();
             }).catch(error => {
                 const errorMessage = error.message;
@@ -71,7 +71,7 @@ const Signup = () => {
     // SAVE USER TO DATABASE
     const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        fetch('', {
+        fetch('http://localhost:5000/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'
